@@ -1,0 +1,99 @@
+[gd_scene load_steps=12 format=3 uid="uid://cd1l7sfjanm15"]
+
+[ext_resource type="PackedScene" uid="uid://04xfshlg3lwu" path="res://cenas/player.tscn" id="1_dckjj"]
+[ext_resource type="PackedScene" uid="uid://dsp65uatdqr3b" path="res://cenas/saida_para_galeria.tscn" id="2_5mi16"]
+[ext_resource type="Texture2D" uid="uid://5307eha2hq3e" path="res://icon.svg" id="3_5mi16"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x16if"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_tkdlr"]
+sky_material = SubResource("ProceduralSkyMaterial_x16if")
+
+[sub_resource type="Environment" id="Environment_v7kd4"]
+background_mode = 2
+sky = SubResource("Sky_tkdlr")
+tonemap_mode = 2
+
+[sub_resource type="TorusMesh" id="TorusMesh_dckjj"]
+inner_radius = 70.0
+outer_radius = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjjdm"]
+albedo_texture = ExtResource("3_5mi16")
+emission_enabled = true
+emission_texture = ExtResource("3_5mi16")
+uv1_scale = Vector3(-20, -20, -20)
+
+[sub_resource type="Animation" id="Animation_5mi16"]
+resource_name = "torus"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:surface_material_override/0:uv1_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4.87),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(10, -25, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fjjdm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:surface_material_override/0:uv1_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fjjdm"]
+_data = {
+&"RESET": SubResource("Animation_fjjdm"),
+&"torus": SubResource("Animation_5mi16")
+}
+
+[node name="cena-quadro-3" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_v7kd4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.52462554, 0)
+use_collision = true
+size = Vector3(100, 1, 100)
+
+[node name="player" parent="." instance=ExtResource("1_dckjj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 2)
+
+[node name="saida_para_galeria" parent="." instance=ExtResource("2_5mi16")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.711199, -0.024625301, -39.16107)
+
+[node name="saida_para_galeria2" parent="." instance=ExtResource("2_5mi16")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.588858, -0.024625301, -2.1442175)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 3.8738346, 0)
+mesh = SubResource("TorusMesh_dckjj")
+surface_material_override/0 = SubResource("StandardMaterial3D_fjjdm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fjjdm")
+}
+autoplay = "torus"

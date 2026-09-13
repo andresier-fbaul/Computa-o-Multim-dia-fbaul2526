@@ -1,0 +1,101 @@
+[gd_scene load_steps=12 format=3 uid="uid://cfb3pvywx0hyw"]
+
+[ext_resource type="PackedScene" uid="uid://04xfshlg3lwu" path="res://cenas/player.tscn" id="1_atwsr"]
+[ext_resource type="PackedScene" uid="uid://dwg15nfhmo7rt" path="res://cenas/quadro_portal_galeria.tscn" id="2_uwwjq"]
+[ext_resource type="PackedScene" uid="uid://d1hfhwbg1l1nd" path="res://cenas/cena_quadro_1.tscn" id="3_6uldo"]
+[ext_resource type="Texture2D" uid="uid://dsm0cpo7el8an" path="res://media/painting.webp" id="4_m1fcd"]
+[ext_resource type="PackedScene" uid="uid://dsp65uatdqr3b" path="res://cenas/saida_para_galeria.tscn" id="5_5xgbk"]
+[ext_resource type="PackedScene" uid="uid://kkmk044828ho" path="res://cenas/cena_quadro_2_vid.tscn" id="5_6uldo"]
+[ext_resource type="Texture2D" uid="uid://se5xyf2fg8ah" path="res://media/67.jpg" id="6_m1fcd"]
+[ext_resource type="PackedScene" uid="uid://cd1l7sfjanm15" path="res://cenas/cena_quadro_3.tscn" id="7_m1fcd"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fe886"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_h0kk0"]
+sky_material = SubResource("ProceduralSkyMaterial_fe886")
+
+[sub_resource type="Environment" id="Environment_h2gyl"]
+background_mode = 2
+sky = SubResource("Sky_h0kk0")
+tonemap_mode = 2
+
+[node name="Maingaleria" type="Node3D"]
+
+[node name="player" parent="." instance=ExtResource("1_atwsr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+
+[node name="geom" type="Node3D" parent="."]
+
+[node name="chao" type="CSGBox3D" parent="geom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(25, 1, 30)
+
+[node name="parede" type="CSGBox3D" parent="geom"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -13, 2.454895, 0)
+use_collision = true
+size = Vector3(7, 1, 30)
+
+[node name="parede2" type="CSGBox3D" parent="geom"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 13, 2.454895, 0)
+use_collision = true
+size = Vector3(7, 1, 30)
+
+[node name="parede3" type="CSGBox3D" parent="geom"]
+transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371139e-08, 1, -4.371139e-08, 0.028930664, 2.454895, 15)
+use_collision = true
+size = Vector3(7, 1, 27.017334)
+
+[node name="parede4" type="CSGBox3D" parent="geom"]
+transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371139e-08, 1, -4.371139e-08, 0.028930664, 2.454895, -15)
+use_collision = true
+size = Vector3(7, 1, 27.017334)
+
+[node name="env" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="env"]
+environment = SubResource("Environment_h2gyl")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="env"]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="quadro-portal-galeria" parent="." instance=ExtResource("2_uwwjq")]
+transform = Transform3D(-0.030084882, 0, -0.99954736, 0, 1, 0, 0.99954736, 0, -0.030084882, 12.348912, 0.01787138, -0.14198685)
+outra_cena = ExtResource("3_6uldo")
+textura_outra_cena = ExtResource("4_m1fcd")
+
+[node name="Label3D" type="Label3D" parent="quadro-portal-galeria"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.034955, 0)
+text = "cada cena destes quadros tem um script que se
+coloca no inspector a outra cena a carregar qd tocam  
+no quadro. as cenas 'quadro_portal_galeria' 
+podem ser alteradas para ter 'esculturas'"
+
+[node name="quadro-portal-galeria2" parent="." instance=ExtResource("2_uwwjq")]
+transform = Transform3D(-0.030084882, 0, -0.99954736, 0, 1, 0, 0.99954736, 0, -0.030084882, 12.348912, 0.01787138, -4.141987)
+
+[node name="quadro-portal-galeria3" parent="." instance=ExtResource("2_uwwjq")]
+transform = Transform3D(-0.030084882, 0, -0.99954736, 0, 1, 0, 0.99954736, 0, -0.030084882, 12.348912, 0.01787138, -8.141987)
+outra_cena = ExtResource("5_6uldo")
+textura_outra_cena = ExtResource("6_m1fcd")
+
+[node name="quadro-portal-galeria4" parent="." instance=ExtResource("2_uwwjq")]
+transform = Transform3D(-0.030084882, 0, -0.99954736, 0, 1, 0, 0.99954736, 0, -0.030084882, -12.233353, 0.01787138, 6.43131)
+outra_cena = ExtResource("3_6uldo")
+textura_outra_cena = ExtResource("4_m1fcd")
+
+[node name="quadro-portal-galeria5" parent="." instance=ExtResource("2_uwwjq")]
+transform = Transform3D(-0.030084882, 0, -0.99954736, 0, 1, 0, 0.99954736, 0, -0.030084882, -12.233353, 0.01787138, 2.4313102)
+outra_cena = ExtResource("7_m1fcd")
+textura_outra_cena = ExtResource("6_m1fcd")
+
+[node name="quadro-portal-galeria6" parent="." instance=ExtResource("2_uwwjq")]
+transform = Transform3D(-0.030084882, 0, -0.99954736, 0, 1, 0, 0.99954736, 0, -0.030084882, -12.233353, 0.01787138, -1.5686898)
+outra_cena = ExtResource("5_6uldo")
+textura_outra_cena = ExtResource("6_m1fcd")
+
+[node name="saida_para_galeria" parent="." instance=ExtResource("5_5xgbk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.09337, 2.3841858e-07, -7.2936954)

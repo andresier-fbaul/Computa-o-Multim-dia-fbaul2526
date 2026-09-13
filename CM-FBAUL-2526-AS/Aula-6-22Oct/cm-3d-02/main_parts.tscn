@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtsiqosmklk7j"]
+
+[sub_resource type="TextMesh" id="TextMesh_m8o8m"]
+text = "*"
+font_size = 120
+
+[node name="MainParts" type="Node3D"]
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+amount = 10
+mesh = SubResource("TextMesh_m8o8m")
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 0.25)
+direction = Vector3(0, 0, 1)
+spread = 109.55
+gravity = Vector3(0, 0, 10)
+angular_velocity_min = 1.0
+angular_velocity_max = 2.0
+radial_accel_min = 1.0
+radial_accel_max = 2.0

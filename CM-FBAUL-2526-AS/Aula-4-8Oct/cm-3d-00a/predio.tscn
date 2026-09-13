@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5bmyrmpegvjx"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1sgxo"]
+frequency = 0.0972
+offset = Vector3(173.5, 0, 0)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_180gj"]
+noise = SubResource("FastNoiseLite_1sgxo")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1sgxo"]
+transparency = 1
+albedo_color = Color(0.71820796, 1, 0.7833803, 1)
+albedo_texture = SubResource("NoiseTexture2D_180gj")
+
+[sub_resource type="BoxMesh" id="BoxMesh_1sgxo"]
+material = SubResource("StandardMaterial3D_1sgxo")
+size = Vector3(1, 5, 1)
+
+[node name="predio" type="Node3D"]
+
+[node name="meshpredio" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("BoxMesh_1sgxo")

@@ -1,0 +1,133 @@
+[gd_scene load_steps=7 format=3 uid="uid://di7qvclwtprxm"]
+
+[ext_resource type="Texture2D" uid="uid://bay804bjindo4" path="res://icon.svg" id="1_qvncm"]
+
+[sub_resource type="Gradient" id="Gradient_jymd3"]
+colors = PackedColorArray(0.031123996, 1, 0.15698004, 1, 1, 0.17228049, 0.6391152, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qvncm"]
+gradient = SubResource("Gradient_jymd3")
+fill_from = Vector2(0.1635514, 0.48598132)
+fill_to = Vector2(0.1588785, 0.22897196)
+
+[sub_resource type="Animation" id="Animation_qvncm"]
+resource_name = "gfx_freneticos"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.0333333, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(297.62, 140), Vector2(5, 140), Vector2(400, 140)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.02),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.13031751, 0.38808978, 1), Color(0.14360619, 0, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Icon2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.46666667, 2.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.2831855]
+}
+
+[sub_resource type="Animation" id="Animation_mshxn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(297.62, 140)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.13031751, 0.38808978, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Icon2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o83jh"]
+_data = {
+&"RESET": SubResource("Animation_mshxn"),
+&"gfx_freneticos": SubResource("Animation_qvncm")
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(581, 330)
+scale = Vector2(18.28125, 10.40625)
+texture = SubResource("GradientTexture2D_qvncm")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 176.0
+offset_top = 85.0
+offset_right = 473.62
+offset_bottom = 225.0
+color = Color(1, 0.13031751, 0.38808978, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 763.0
+offset_top = 84.0
+offset_right = 1061.0
+offset_bottom = 224.0
+color = Color(0.10540676, 0, 1, 1)
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(633, 478)
+scale = Vector2(3.8906252, 1.3437502)
+texture = ExtResource("1_qvncm")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(632, 277)
+texture = ExtResource("1_qvncm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_o83jh")
+}
+autoplay = "gfx_freneticos"

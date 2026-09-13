@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://c04r5p0omfgnd"]
+
+[ext_resource type="Script" uid="uid://c48jon1i60pyy" path="res://2d_00.gd" id="1_af2un"]
+
+[node name="2d_00" type="Node2D"]
+script = ExtResource("1_af2un")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(49, 510, 272, 590, 638, 569, 923, 592, 1097, 516, 1094, 387, 1038, 317, 1038, 243, 927, 51, 392, 112, 72, 96)
+width = 50.0
+default_color = Color(0.9773997, 1, 0.25551343, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 285.0
+offset_top = -72.0
+offset_right = 1108.0
+offset_bottom = 289.0
+color = Color(0.13956034, 0.17385441, 1, 1)

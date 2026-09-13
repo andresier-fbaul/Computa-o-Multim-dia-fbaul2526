@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://kkmk044828ho"]
+
+[ext_resource type="PackedScene" uid="uid://04xfshlg3lwu" path="res://cenas/player.tscn" id="1_x16if"]
+[ext_resource type="PackedScene" uid="uid://dsp65uatdqr3b" path="res://cenas/saida_para_galeria.tscn" id="2_tkdlr"]
+[ext_resource type="VideoStream" uid="uid://bmyx2lnsv85cc" path="res://media/output.ogv" id="3_0ujrt"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x16if"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_tkdlr"]
+sky_material = SubResource("ProceduralSkyMaterial_x16if")
+
+[sub_resource type="Environment" id="Environment_v7kd4"]
+background_mode = 2
+sky = SubResource("Sky_tkdlr")
+tonemap_mode = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0ujrt"]
+size = Vector2(2, 1.3)
+orientation = 2
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_jm080"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_seohx"]
+resource_local_to_scene = true
+cull_mode = 2
+albedo_texture = SubResource("ViewportTexture_jm080")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8qxs3"]
+size = Vector2(20, 12)
+orientation = 2
+
+[node name="cena-quadro-2-video" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_v7kd4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.52462554, 0)
+use_collision = true
+size = Vector3(10, 1, 10)
+
+[node name="player" parent="." instance=ExtResource("1_x16if")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 4.186591)
+
+[node name="saida_para_galeria" parent="." instance=ExtResource("2_tkdlr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.711199, -0.024625301, -1.4762287)
+
+[node name="saida_para_galeria2" parent="." instance=ExtResource("2_tkdlr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0004632, -0.024625301, -2.1442175)
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(256, 128)
+render_target_update_mode = 4
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="SubViewport"]
+offset_right = 256.0
+offset_bottom = 144.0
+stream = ExtResource("3_0ujrt")
+autoplay = true
+loop = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0803187, 1.1826081)
+mesh = SubResource("PlaneMesh_0ujrt")
+surface_material_override/0 = SubResource("StandardMaterial3D_seohx")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0803187, -18.677996)
+mesh = SubResource("PlaneMesh_8qxs3")
+surface_material_override/0 = SubResource("StandardMaterial3D_seohx")

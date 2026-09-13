@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwg15nfhmo7rt"]
+
+[ext_resource type="Texture2D" uid="uid://5307eha2hq3e" path="res://icon.svg" id="1_ed6sc"]
+[ext_resource type="Script" uid="uid://d1tk3ylt7inn1" path="res://scripts/quadro_portal_galeria.gd" id="1_rc071"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ed6sc"]
+size = Vector3(0.8, 1.4897461, 0.26401368)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rc071"]
+size = Vector2(0.8, 0.6)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rc071"]
+resource_local_to_scene = true
+cull_mode = 2
+albedo_texture = ExtResource("1_ed6sc")
+
+[node name="quadro-portal-galeria" type="Node3D"]
+script = ExtResource("1_rc071")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75512695, 0.082006834)
+shape = SubResource("BoxShape3D_ed6sc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0001235, 0)
+mesh = SubResource("PlaneMesh_rc071")
+surface_material_override/0 = SubResource("StandardMaterial3D_rc071")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

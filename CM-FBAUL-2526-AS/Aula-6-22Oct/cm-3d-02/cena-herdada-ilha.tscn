@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw48ko4cm6pb7"]
+
+[ext_resource type="PackedScene" uid="uid://bli8ol7u466j" path="res://blender-godot-island-test.glb" id="1_2mv24"]
+
+[node name="blender-godot-island-test" instance=ExtResource("1_2mv24")]
+
+[node name="Suzanne" parent="." index="1"]
+transform = Transform3D(0.42470887, -0.16248895, 0.108108565, 0.06315237, 0.3593974, 0.29208374, -0.18466705, -0.2507957, 0.34852153, -0.52277005, 1.8856587, -0.015319534)

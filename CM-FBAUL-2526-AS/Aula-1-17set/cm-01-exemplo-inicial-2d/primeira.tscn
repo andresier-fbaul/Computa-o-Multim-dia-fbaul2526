@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=3 uid="uid://bbhb3yy1a6ftd"]
+
+[ext_resource type="Texture2D" uid="uid://bp8pou3e1syl1" path="res://icon.svg" id="1_ae36d"]
+[ext_resource type="Script" uid="uid://dgw51fgiv87nv" path="res://primeira.gd" id="1_fmnyv"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_u4vec"]
+seed = 650
+frequency = 0.0265
+offset = Vector3(87.05, 0, 0)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ae36d"]
+noise = SubResource("FastNoiseLite_u4vec")
+
+[sub_resource type="Animation" id="Animation_fmnyv"]
+resource_name = "new_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon3:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.65),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-200, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pbb7u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon3:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bp2x8"]
+_data = {
+&"RESET": SubResource("Animation_pbb7u"),
+&"new_animation": SubResource("Animation_fmnyv")
+}
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(-7, -7)
+script = ExtResource("1_fmnyv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(395, 287)
+texture = SubResource("NoiseTexture2D_ae36d")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(913, 248)
+texture = ExtResource("1_ae36d")
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(830, 562)
+texture = ExtResource("1_ae36d")
+
+[node name="Icon3" type="Sprite2D" parent="."]
+position = Vector2(243.99998, 228)
+rotation = -0.8257647
+scale = Vector2(4.109375, 3.7578125)
+texture = ExtResource("1_ae36d")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bp2x8")
+}
+autoplay = "new_animation"

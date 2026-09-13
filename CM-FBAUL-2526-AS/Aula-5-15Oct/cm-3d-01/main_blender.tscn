@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://dejipjtkacwyt"]
+
+[ext_resource type="PackedScene" uid="uid://lam76t03ekeo" path="res://blender-godot-island-test2.glb" id="1_4fq8n"]
+[ext_resource type="PackedScene" uid="uid://b73b5uhq2ru3u" path="res://blender-godot-phy-te2st.glb" id="2_rewpu"]
+[ext_resource type="PackedScene" uid="uid://dtsiqosmklk7j" path="res://main_parts.tscn" id="3_kq3mk"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rewpu"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_kq3mk"]
+sky_material = SubResource("ProceduralSkyMaterial_rewpu")
+
+[sub_resource type="Environment" id="Environment_8qvlg"]
+background_mode = 2
+sky = SubResource("Sky_kq3mk")
+tonemap_mode = 2
+
+[node name="MainBlender" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8qvlg")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Node3Dblender" type="Node3D" parent="."]
+
+[node name="blender-godot-island-test2" parent="Node3Dblender" instance=ExtResource("1_4fq8n")]
+
+[node name="AnimationPlayer" parent="Node3Dblender/blender-godot-island-test2" index="2"]
+autoplay = "SuzanneAction"
+
+[node name="blender-godot-island-test3" parent="Node3Dblender" instance=ExtResource("1_4fq8n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5410728, 0, -4.2646537)
+
+[node name="blender-godot-phy-te2st" parent="Node3Dblender" instance=ExtResource("2_rewpu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2368038, 0, -6.023511)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4809103, 3.576419)
+
+[node name="MainParts" parent="." instance=ExtResource("3_kq3mk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.893775, -6.069215)
+
+[editable path="Node3Dblender/blender-godot-island-test2"]
